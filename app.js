@@ -4,6 +4,17 @@ const todoList = document.getElementById('incompleteTasks');
 const completedList = document.getElementById('completed-tasks');
 const todoApp = document.querySelector('.todo-app');
 
+function createDeleteButton() {
+  const deleteButton = document.createElement('button');
+  deleteButton.className = 'delete';
+
+  const deleteIcon = document.createElement('img');
+  deleteIcon.src = './remove.svg';
+  deleteButton.append(deleteIcon);
+
+  return deleteButton;
+}
+
 const createTaskListItem = function (taskText) {
   const taskItem = document.createElement('li');
 
@@ -11,8 +22,6 @@ const createTaskListItem = function (taskText) {
   const label = document.createElement('label');
   const editInput = document.createElement('input');
   const editButton = document.createElement('button');
-  const deleteButton = document.createElement('button');
-  const deleteIcon = document.createElement('img');
 
   label.innerText = taskText;
   label.className = 'task';
@@ -25,15 +34,7 @@ const createTaskListItem = function (taskText) {
   editButton.innerText = 'Edit';
   editButton.className = 'edit';
 
-  deleteButton.className = 'delete';
-  deleteIcon.src = './remove.svg';
-  deleteButton.appendChild(deleteIcon);
-
-  taskItem.appendChild(checkbox);
-  taskItem.appendChild(label);
-  taskItem.appendChild(editInput);
-  taskItem.appendChild(editButton);
-  taskItem.appendChild(deleteButton);
+  taskItem.append(checkbox, label, editInput, editButton, createDeleteButton());
   return taskItem;
 };
 
